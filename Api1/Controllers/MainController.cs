@@ -6,11 +6,9 @@ namespace Api1.Controllers
     [Route("api/[controller]")]
     public class MainController : ControllerBase
     {
-        private readonly ILogger<MainController> _logger;
-
-        public MainController(ILogger<MainController> logger)
+        public MainController()
         {
-            _logger = logger;
+
         }
 
         [HttpGet("taxaJuros")]
