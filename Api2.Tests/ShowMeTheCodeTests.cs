@@ -24,9 +24,11 @@ namespace Api2.Tests
 
             // Act
             var resultado = await client.GetAsync("api/showMeTheCode");
+            var link = resultado.Content.ReadAsStringAsync().Result;
 
             // Assert
             Assert.Equal(HttpStatusCode.OK, resultado.StatusCode);
+            Assert.NotNull(link);
         }
     }
 }
