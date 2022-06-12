@@ -11,7 +11,7 @@ builder.Services.AddEndpointsApiExplorer()
                     {
                         Title = "Cálculo do Juros API",
                         Description = "Esta API é responsavel por retornar o valor do calculo do juros composto e de informar o link do repositório do código fonte da API.",
-                        Contact = new OpenApiContact() { Name  = "Raul da Mata Esteves", Email = "raul.m.esteves@gmail.com"}
+                        Contact = new OpenApiContact() { Name = "Raul da Mata Esteves", Email = "raul.m.esteves@gmail.com" }
                     });
                 });
 

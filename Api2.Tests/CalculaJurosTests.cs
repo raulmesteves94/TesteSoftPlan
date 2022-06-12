@@ -6,27 +6,13 @@ using Xunit;
 namespace Api2.Tests
 {
     [Collection(nameof(IntegrationTestsFixture))]
-    public class MainTests
+    public class CalculaJurosTests
     {
         private readonly IntegrationTestsFixture _fixtures;
 
-        public MainTests(IntegrationTestsFixture fixtures)
+        public CalculaJurosTests(IntegrationTestsFixture fixtures)
         {
             _fixtures = fixtures;
-        }
-
-        [Fact]
-        public async Task Show_Me_The_Code_DeveRetornarComSucesso_200()
-        {
-            // Arrange
-            var client = _fixtures.GetSampleApplication().CreateClient();
-            client.BaseAddress = new Uri("https://localhost:7188/");
-
-            // Act
-            var resultado = await client.GetAsync("api/Main/showMeTheCode");
-
-            // Assert
-            Assert.Equal(HttpStatusCode.OK, resultado.StatusCode);
         }
 
         [Fact]
@@ -37,7 +23,7 @@ namespace Api2.Tests
             client.BaseAddress = new Uri("https://localhost:7188/");
 
             // Act
-            var resultado = await client.GetAsync($"api/Main/calculajuros?valorInicial=100&tempo=5");
+            var resultado = await client.GetAsync($"api/calculajuros?valorInicial=100&tempo=5");
 
             // Assert
             Assert.Equal(HttpStatusCode.OK, resultado.StatusCode);
@@ -51,7 +37,7 @@ namespace Api2.Tests
             client.BaseAddress = new Uri("https://localhost:7188/");
 
             // Act
-            var resultado = await client.GetAsync($"api/Main/calculajuros?valorInicial=0&tempo=5");
+            var resultado = await client.GetAsync($"api/calculajuros?valorInicial=0&tempo=5");
 
             // Assert
             Assert.Equal(HttpStatusCode.BadRequest, resultado.StatusCode);
@@ -65,7 +51,7 @@ namespace Api2.Tests
             client.BaseAddress = new Uri("https://localhost:7188/");
 
             // Act
-            var resultado = await client.GetAsync($"api/Main/calculajuros?valorInicial=100&tempo=0");
+            var resultado = await client.GetAsync($"api/calculajuros?valorInicial=100&tempo=0");
 
             // Assert
             Assert.Equal(HttpStatusCode.BadRequest, resultado.StatusCode);
@@ -79,7 +65,7 @@ namespace Api2.Tests
             client.BaseAddress = new Uri("https://localhost:7188/");
 
             // Act
-            var response = client.GetAsync($"api/Main/calculajuros?valorInicial=100&tempo=5").Result;
+            var response = client.GetAsync($"api/calculajuros?valorInicial=100&tempo=5").Result;
             var resultado = response.Content.ReadFromJsonAsync<decimal>().Result;
 
             // Assert
@@ -99,7 +85,7 @@ namespace Api2.Tests
             client.BaseAddress = new Uri("https://localhost:7188/");            
 
             // Act
-            var response = client.GetAsync($"api/Main/calculajuros?valorInicial={valorInicial}&tempo={mes}").Result;
+            var response = client.GetAsync($"api/calculajuros?valorInicial={valorInicial}&tempo={mes}").Result;
             var resultado = response.Content.ReadFromJsonAsync<decimal>().Result;
             // Assert
             Assert.Equal(valorTotal, resultado);

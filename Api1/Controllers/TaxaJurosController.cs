@@ -4,14 +4,14 @@ namespace Api1.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class MainController : ControllerBase
+    public class TaxaJurosController : ControllerBase
     {
-        public MainController()
+        public TaxaJurosController()
         {
 
         }
 
-        [HttpGet("taxaJuros")]
+        [HttpGet(Name = "taxaJuros")]
         public ActionResult<decimal> ObterTaxaJuros()
         {
             var taxaJuros = 0.01;
