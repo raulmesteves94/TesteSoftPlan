@@ -20,11 +20,11 @@ namespace Api1.Tests
         {
             // Arrange
             var client = _fixtures.GetSampleApplication().CreateClient();
-            client.BaseAddress = new Uri("httpss://localhost:5001/");
+            client.BaseAddress = new Uri("https://localhost:5001/");
 
             // Act
             var resultado = await client.GetAsync("api/taxaJuros");
-            var taxaJuros = resultado.Content.ReadFromJsonAsync<decimal>().Result;
+            var taxaJuros = await resultado.Content.ReadFromJsonAsync<decimal>();
 
             // Assert
             Assert.Equal(HttpStatusCode.OK, resultado.StatusCode);

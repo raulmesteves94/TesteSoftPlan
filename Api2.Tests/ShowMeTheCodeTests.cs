@@ -19,12 +19,11 @@ namespace Api2.Tests
         public async Task Show_Me_The_Code_DeveRetornarComSucesso_200()
         {
             // Arrange
-            var client = _fixtures.GetSampleApplication().CreateClient();
-            client.BaseAddress = new Uri("https://localhost:7001/");
+            var client = _fixtures.GetSampleApplicationClient();
 
             // Act
             var resultado = await client.GetAsync("api/showMeTheCode");
-            var link = resultado.Content.ReadAsStringAsync().Result;
+            var link = await resultado.Content.ReadAsStringAsync();
 
             // Assert
             Assert.Equal(HttpStatusCode.OK, resultado.StatusCode);

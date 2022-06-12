@@ -1,3 +1,4 @@
+using Api2.Services;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using System.Net.Http.Headers;
@@ -8,15 +9,16 @@ namespace Api2.Controllers
     [Route("api/[controller]")]
     public class CalculaJurosController : ControllerBase
     {
-        private readonly TaxaJurosHttpClient _client;
 
-        public CalculaJurosController(TaxaJurosHttpClient client)
+        public CalculaJurosController()
         {
-            _client = client;
         }
 
         [HttpGet(Name = "calculajuros")]
-        public ActionResult<decimal> CalcularJuros(decimal valorInicial, int tempo)
+        public async Task<ActionResult<decimal>> CalcularJuros(
+            [FromServices] ICalculaJurosService service, 
+            decimal valorInicial, 
+            int tempo)
         {
             try
             {
@@ -30,11 +32,9 @@ namespace Api2.Controllers
                     return BadRequest("Deve ser informado um valor inicial maior que zero!");
                 }
 
-                var taxaJuros = _client.ObterTaxaJuros();
+                var valorFinal = await service.Calcular(valorInicial, tempo);
 
-                var valorJuros = valorInicial * Convert.ToDecimal(Math.Pow(1 + Convert.ToDouble(taxaJuros), tempo));
-
-                return Ok(valorJuros.ToString("F2").Replace(",", "."));
+                return Ok(valorFinal.ToString("F2").Replace(",", "."));
             }
             catch (Exception ex)
             {
