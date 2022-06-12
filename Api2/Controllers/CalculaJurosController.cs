@@ -8,11 +8,11 @@ namespace Api2.Controllers
     [Route("api/[controller]")]
     public class CalculaJurosController : ControllerBase
     {
-        private readonly IConfiguration _configuration;
+        private readonly TaxaJurosHttpClient _client;
 
-        public CalculaJurosController(IConfiguration configuration)
+        public CalculaJurosController(TaxaJurosHttpClient client)
         {
-            _configuration = configuration;
+            _client = client;
         }
 
         [HttpGet(Name = "calculajuros")]
@@ -30,9 +30,7 @@ namespace Api2.Controllers
                     return BadRequest("Deve ser informado um valor inicial maior que zero!");
                 }
 
-                var client = new ClientHttp(_configuration);
-
-                var taxaJuros = client.ObterTaxaJuros();
+                var taxaJuros = _client.ObterTaxaJuros();
 
                 var valorJuros = valorInicial * Convert.ToDecimal(Math.Pow(1 + Convert.ToDouble(taxaJuros), tempo));
 
