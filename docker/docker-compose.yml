@@ -1,0 +1,26 @@
+﻿version: '3.8'
+
+services:
+  api1:
+    container_name: api1
+    image: api1
+    build:
+      context: ../Api1
+      dockerfile: ./Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Internal
+      - ASPNETCORE_URLS=http://+:5000
+    ports:
+      - 5000:5000
+
+  api2:
+    container_name: api2
+    image: api2
+    build:
+      context: ../Api2
+      dockerfile: ./Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Internal
+      - ASPNETCORE_URLS=http://+:7000
+    ports:
+      - 7000:7000

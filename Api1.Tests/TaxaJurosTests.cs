@@ -20,7 +20,7 @@ namespace Api1.Tests
         {
             // Arrange
             var client = _fixtures.GetSampleApplication().CreateClient();
-            client.BaseAddress = new Uri("httpss://localhost:7268/");
+            client.BaseAddress = new Uri("httpss://localhost:5001/");
 
             // Act
             var resultado = await client.GetAsync("api/taxaJuros");

@@ -20,7 +20,7 @@ namespace Api2.Tests
         {
             // Arrange
             var client = _fixtures.GetSampleApplication().CreateClient();
-            client.BaseAddress = new Uri("https://localhost:7188/");
+            client.BaseAddress = new Uri("https://localhost:7001/");
 
             // Act
             var resultado = await client.GetAsync("api/showMeTheCode");
