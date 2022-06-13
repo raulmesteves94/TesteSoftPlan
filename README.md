@@ -1,6 +1,7 @@
 # Teste SoftPlan
 
-O projeto tem como objetivo calcular o valor do juro composto utilizando duas Apis.
+O projeto tem como objetivo calcular o valor do juro composto utilizando duas Apis. 
+Por ser um projeto mais simples, foi escolhido uma arquitetura de camadas mais simples também. Foram feitas, a separação da responsabilidade do calculo de juros e da chamada http em classes especificas.
 
 ## Clonar o projeto
 
