@@ -12,8 +12,8 @@ public class CalculaJurosService : ICalculaJurosService
     {
         var taxaJuros = await _client.ObterTaxaJuros();
 
-        var valorFinal = valorInicial * (decimal)Math.Pow(1 + Convert.ToDouble(taxaJuros), tempo);
+        var valorFinal = Math.Truncate(valorInicial * Convert.ToDecimal(Math.Pow(1 + Convert.ToDouble(taxaJuros), tempo)) * 100) / 100;
 
-        return valorFinal;
+        return Convert.ToDecimal(valorFinal);
     }
 }

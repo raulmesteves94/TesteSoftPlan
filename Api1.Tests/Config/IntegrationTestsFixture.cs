@@ -19,9 +19,12 @@ namespace Api1.Tests.Config
         {
         }
 
-        public WebApplicationFactory<Program> GetSampleApplication()
+        public HttpClient GetSampleApplication()
         {
-            return new WebApplicationFactory<Program>();
+            var client = new WebApplicationFactory<Program>().CreateClient();
+            client.BaseAddress = new Uri("https://localhost:5001/");
+
+            return client;
         }
     }
 }

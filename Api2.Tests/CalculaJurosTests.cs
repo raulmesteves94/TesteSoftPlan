@@ -19,7 +19,7 @@ namespace Api2.Tests
         [InlineData(100, 2, 102.01)]
         [InlineData(200, 6, 212.30)]
         [InlineData(400, 7, 428.85)]
-        [InlineData(700, 8, 758.00)]
+        [InlineData(700, 8, 757.99)]
         public async Task Calcula_Juros_Composto_DeveRetornarValoresCorretos(decimal valorInicial, int mes, decimal valorTotal)
         {
             // Arrange

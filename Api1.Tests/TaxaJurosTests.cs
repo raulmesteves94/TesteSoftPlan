@@ -19,8 +19,7 @@ namespace Api1.Tests
         public async Task Obter_Taxa_Juros_DeveRetornarComSucesso_200()
         {
             // Arrange
-            var client = _fixtures.GetSampleApplication().CreateClient();
-            client.BaseAddress = new Uri("https://localhost:5001/");
+            var client = _fixtures.GetSampleApplication();
 
             // Act
             var resultado = await client.GetAsync("api/taxaJuros");
